@@ -2,8 +2,14 @@
 
 OLD=$1
 NEW=$2
-EXT=$3
 
-cp $OLD"."$EXT $NEW"."$EXT
-sed -i "s/$OLD/$NEW/g" $NEW"."$EXT
-sed -i "s/${OLD^^}/${NEW^^}/g" $NEW"."$EXT
+path=$PWD
+new_path="${path/src/include}"
+
+cp $OLD".C" $NEW".C"
+sed -i "s/$OLD/$NEW/g" $NEW".C"
+
+cd $new_path
+cp $OLD".h" $NEW".h"
+sed -i "s/$OLD/$NEW/g" $NEW".h"
+sed -i "s/${OLD^^}/${NEW^^}/g" $NEW".h"
